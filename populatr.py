@@ -16,7 +16,7 @@ def populateIngredients():
     ingredients = ingredients.readlines()
     print(ingredients)
     for ingredient in ingredients:
-        line="insert into usuario values(NULL,'{}');\n".format(ingredient.strip())
+        line="insert into ingredientes values(NULL,'{}');\n".format(ingredient.strip())
         populatr.write(line)
 
 populatr.close()
