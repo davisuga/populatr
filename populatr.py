@@ -8,7 +8,7 @@ def populateUsers():
     print(nomes)    
     #print(nomes)
     for nome in nomes:
-        line="insert into usuario values(NULL,'{}','{}','{}','{}');\n".format(nome.strip(),nome.strip()[::-1],nome.strip()+'@gmail.com',nome.strip()+".png")
+        line="insert into Usuario values(NULL,'{}','{}','{}','{}');\n".format(nome.strip(),nome.strip()[::-1],nome.strip()+'@gmail.com',nome.strip()+".png")
         populatr.write(line)
 
 def populateIngredients():
@@ -16,7 +16,11 @@ def populateIngredients():
     ingredients = ingredients.readlines()
     print(ingredients)
     for ingredient in ingredients:
-        line="insert into ingredientes values(NULL,'{}');\n".format(ingredient.strip())
+        line="insert into Ingredientes values(NULL,'{}');\n".format(ingredient.strip())
         populatr.write(line)
-
+populateChoice = input("What do you what to populate?")
+if populateChoice.lower() == "ingredients" or int(populateChoice)==1:
+	populateIngredients()
+elif populateChoice.lower() == "users" or int(populateChoice)==2:
+	populateUsers()
 populatr.close()
