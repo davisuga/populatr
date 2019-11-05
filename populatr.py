@@ -1,5 +1,6 @@
 users=[]
-populatr = open('populatr.sql', 'w+')
+populate_nome = open('populate_nomes.sql', 'w+')
+populate_ingredientes = open('populate_ingredientes.sql', 'w+')
 
 #nomes = map(lambda s: s.strip(), nomes)
 def populateUsers():
@@ -8,19 +9,38 @@ def populateUsers():
     print(nomes)    
     #print(nomes)
     for nome in nomes:
-        line="insert into Usuario values(NULL,'{}','{}','{}','{}');\n".format(nome.strip(),nome.strip()[::-1],nome.strip()+'@gmail.com',nome.strip()+".png")
-        populatr.write(line)
+        line="insert into usuario values(NULL,'{}','{}','{}','{}');\n".format(nome.strip(),nome.strip()[::-1],nome.strip()+'@gmail.com',nome.strip()+".png")
+        populate_nome.write(line)
 
 def populateIngredients():
     ingredients = open('ingredients.txt', 'r')
     ingredients = ingredients.readlines()
     print(ingredients)
     for ingredient in ingredients:
-        line="insert into Ingredientes values(NULL,'{}');\n".format(ingredient.strip())
-        populatr.write(line)
-populateChoice = input("What do you what to populate?")
-if populateChoice.lower() == "ingredients" or int(populateChoice)==1:
-	populateIngredients()
-elif populateChoice.lower() == "users" or int(populateChoice)==2:
-	populateUsers()
-populatr.close()
+        line="insert into ingredientes values(NULL,'{}');\n".format(ingredient.strip())
+        populate_ingredientes.write(line)
+
+    
+
+def populateReceitas():
+    ingredients = open('ingredients.txt', 'r')
+    ingredients = ingredients.readlines()
+    print(ingredients)
+    for ingredient in ingredients:
+        line="insert into ingredientes values(NULL,'{}');\n".format(ingredient.strip())
+        populate_ingredientes.write(line)
+
+        
+
+quest = input('Vc quer: \n Popular ingredientes (a) \n Popular nomes (b)\n')
+
+
+if quest == 'a':
+    populateIngredients()
+elif quest == 'b':
+    populateUsers()
+    
+    
+
+populate_ingredientes.close()
+populate_nome.close()
